@@ -1,5 +1,8 @@
 # MyTides
 
+![Icon](./icon.png)
+
+
 A macOS widget app for tracking tide conditions and surf spots in Santa Cruz.
 
 ## Features
@@ -17,7 +20,7 @@ A macOS widget app for tracking tide conditions and surf spots in Santa Cruz.
 ## Surf Spots Tracked
 
 - Pleasure Point
-- 26th Avenue  
+- 26th Avenue
 - The Hook
 - Steamer Lane
 - Cowell's
