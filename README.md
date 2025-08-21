@@ -1,7 +1,9 @@
-# MyTides
+# MyTides 🌊
 
 ![Icon](./icon.png)
 
+> **🤖 A DIY AI Era Project**  
+> This app isn't meant to be broadly useful—it's built for me, exactly what I wanted. It's an example of the DIY AI era where you can build personal tools tailored to your specific needs. Want something different? Fork it and make it yours! 🔧
 
 A macOS widget app for tracking tide conditions and surf spots in Santa Cruz.
 
