@@ -100,6 +100,10 @@ struct SurflineSpot {
     var surflineWebURL: String {
         "https://www.surfline.com/surf-report/\(name.lowercased().replacingOccurrences(of: " ", with: "-"))/\(id)"
     }
+    
+    var surflineCamURL: String {
+        "https://www.surfline.com/surf-report/\(name.lowercased().replacingOccurrences(of: " ", with: "-"))/\(id)?camId=\(id)"
+    }
 }
 
 struct TidePoolConfig {

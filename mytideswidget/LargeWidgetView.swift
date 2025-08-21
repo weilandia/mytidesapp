@@ -107,23 +107,30 @@ struct LargeWidgetView: View {
                         VStack(alignment: .leading, spacing: 8) {
                             ForEach(AppConfig.surflineSpots.prefix(3), id: \.id) { spot in
                                 if let conditions = spotConditions[spot.id] {
-                                    HStack {
-                                        Text(spot.displayName)
-                                            .font(.system(size: 12))
-                                            .foregroundColor(.white)
-                                        Spacer()
-                                        Text(conditions.qualityEmoji)
-                                            .font(.system(size: 12))
-                                        Text("•")
-                                            .foregroundColor(.white.opacity(0.4))
-                                        Text(conditions.waveHeight)
-                                            .font(.system(size: 11, weight: .medium))
-                                            .foregroundColor(.cyan)
-                                        Text("•")
-                                            .foregroundColor(.white.opacity(0.4))
-                                        Text(conditions.rating.text)
-                                            .font(.system(size: 10))
-                                            .foregroundColor(ratingColor(conditions.rating.value))
+                                    Link(destination: URL(string: spot.surflineCamURL)!) {
+                                        HStack {
+                                            HStack(spacing: 3) {
+                                                Text(spot.displayName)
+                                                    .font(.system(size: 12))
+                                                    .foregroundColor(.white)
+                                                Image(systemName: "camera.fill")
+                                                    .font(.system(size: 9))
+                                                    .foregroundColor(.blue.opacity(0.8))
+                                            }
+                                            Spacer()
+                                            Text(conditions.qualityEmoji)
+                                                .font(.system(size: 12))
+                                            Text("•")
+                                                .foregroundColor(.white.opacity(0.4))
+                                            Text(conditions.waveHeight)
+                                                .font(.system(size: 11, weight: .medium))
+                                                .foregroundColor(.cyan)
+                                            Text("•")
+                                                .foregroundColor(.white.opacity(0.4))
+                                            Text(conditions.rating.text)
+                                                .font(.system(size: 10))
+                                                .foregroundColor(ratingColor(conditions.rating.value))
+                                        }
                                     }
                                 }
                             }
@@ -132,33 +139,51 @@ struct LargeWidgetView: View {
                         // Fallback to placeholder data
                         VStack(alignment: .leading, spacing: 6) {
                             // Pleasure Point
-                            HStack {
-                                Text("Pleasure Point")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Text(tideData.pleasurePointCondition.quality.emoji)
-                                    .font(.system(size: 12))
-                                Text("•")
-                                    .foregroundColor(.white.opacity(0.4))
-                                Text(tideData.pleasurePointCondition.reason)
-                                    .font(.system(size: 10))
-                                    .foregroundColor(qualityColor(tideData.pleasurePointCondition.quality))
+                            if let ppSpot = AppConfig.surflineSpots.first(where: { $0.displayName == "Pleasure Point" }) {
+                                Link(destination: URL(string: ppSpot.surflineCamURL)!) {
+                                    HStack {
+                                        HStack(spacing: 3) {
+                                            Text("Pleasure Point")
+                                                .font(.system(size: 12))
+                                                .foregroundColor(.white)
+                                            Image(systemName: "camera.fill")
+                                                .font(.system(size: 9))
+                                                .foregroundColor(.blue.opacity(0.8))
+                                        }
+                                        Spacer()
+                                        Text(tideData.pleasurePointCondition.quality.emoji)
+                                            .font(.system(size: 12))
+                                        Text("•")
+                                            .foregroundColor(.white.opacity(0.4))
+                                        Text(tideData.pleasurePointCondition.reason)
+                                            .font(.system(size: 10))
+                                            .foregroundColor(qualityColor(tideData.pleasurePointCondition.quality))
+                                    }
+                                }
                             }
                             
                             // 26th Ave
-                            HStack {
-                                Text("26th Ave")
-                                    .font(.system(size: 12))
-                                    .foregroundColor(.white)
-                                Spacer()
-                                Text(tideData.twentySixthCondition.quality.emoji)
-                                    .font(.system(size: 12))
-                                Text("•")
-                                    .foregroundColor(.white.opacity(0.4))
-                                Text(tideData.twentySixthCondition.reason)
-                                    .font(.system(size: 10))
-                                    .foregroundColor(qualityColor(tideData.twentySixthCondition.quality))
+                            if let spot26 = AppConfig.surflineSpots.first(where: { $0.displayName == "26th Ave" }) {
+                                Link(destination: URL(string: spot26.surflineCamURL)!) {
+                                    HStack {
+                                        HStack(spacing: 3) {
+                                            Text("26th Ave")
+                                                .font(.system(size: 12))
+                                                .foregroundColor(.white)
+                                            Image(systemName: "camera.fill")
+                                                .font(.system(size: 9))
+                                                .foregroundColor(.blue.opacity(0.8))
+                                        }
+                                        Spacer()
+                                        Text(tideData.twentySixthCondition.quality.emoji)
+                                            .font(.system(size: 12))
+                                        Text("•")
+                                            .foregroundColor(.white.opacity(0.4))
+                                        Text(tideData.twentySixthCondition.reason)
+                                            .font(.system(size: 10))
+                                            .foregroundColor(qualityColor(tideData.twentySixthCondition.quality))
+                                    }
+                                }
                             }
                         }
                     }

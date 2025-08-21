@@ -105,18 +105,25 @@ struct MediumWidgetView: View {
                         HStack(spacing: 16) {
                             ForEach(AppConfig.surflineSpots.prefix(2), id: \.id) { spot in
                                 if let conditions = spotConditions[spot.id] {
-                                    VStack(alignment: .leading, spacing: 2) {
-                                        Text(spot.displayName)
-                                            .font(.system(size: 10))
-                                            .foregroundColor(.white.opacity(0.7))
-                                            .lineLimit(1)
-                                        HStack(spacing: 1) {
-                                            ForEach(0..<5) { i in
-                                                Image(systemName: i < Int(conditions.rating.value) ? "star.fill" : "star")
+                                    Link(destination: URL(string: spot.surflineCamURL)!) {
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            HStack(spacing: 2) {
+                                                Text(spot.displayName)
+                                                    .font(.system(size: 10))
+                                                    .foregroundColor(.white.opacity(0.7))
+                                                    .lineLimit(1)
+                                                Image(systemName: "camera.fill")
                                                     .font(.system(size: 8))
-                                                    .foregroundColor(
-                                                        i < Int(conditions.rating.value) ? .yellow : Color.gray.opacity(0.3)
-                                                    )
+                                                    .foregroundColor(.blue.opacity(0.7))
+                                            }
+                                            HStack(spacing: 1) {
+                                                ForEach(0..<5) { i in
+                                                    Image(systemName: i < Int(conditions.rating.value) ? "star.fill" : "star")
+                                                        .font(.system(size: 8))
+                                                        .foregroundColor(
+                                                            i < Int(conditions.rating.value) ? .yellow : Color.gray.opacity(0.3)
+                                                        )
+                                                }
                                             }
                                         }
                                     }

@@ -234,30 +234,49 @@ struct SimpleSurfSpotCard: View {
     }
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(spot.displayName)
-                    .font(.headline)
-                
-                Text(conditions.rating.text)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                    .lineLimit(1)
+        Button(action: {
+            if let url = URL(string: spot.surflineCamURL) {
+                NSWorkspace.shared.open(url)
             }
-            
-            Spacer()
-            
-            HStack(spacing: 2) {
-                ForEach(0..<5) { i in
-                    Image(systemName: i < Int(conditions.rating.value) ? "star.fill" : "star")
+        }) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    HStack(spacing: 4) {
+                        Text(spot.displayName)
+                            .font(.headline)
+                        Image(systemName: "camera.fill")
+                            .font(.caption)
+                            .foregroundColor(.blue)
+                    }
+                    
+                    Text(conditions.rating.text)
                         .font(.caption)
-                        .foregroundColor(ratingColor)
+                        .foregroundColor(.secondary)
+                        .lineLimit(1)
+                }
+                
+                Spacer()
+                
+                HStack(spacing: 2) {
+                    ForEach(0..<5) { i in
+                        Image(systemName: i < Int(conditions.rating.value) ? "star.fill" : "star")
+                            .font(.caption)
+                            .foregroundColor(ratingColor)
+                    }
                 }
             }
+            .padding()
+            .background(Color(NSColor.controlBackgroundColor))
+            .cornerRadius(8)
         }
-        .padding()
-        .background(Color(NSColor.controlBackgroundColor))
-        .cornerRadius(8)
+        .buttonStyle(.plain)
+        .onHover { hovering in
+            if hovering {
+                NSCursor.pointingHand.push()
+            } else {
+                NSCursor.pop()
+            }
+        }
     }
 }
 
