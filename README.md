@@ -29,10 +29,48 @@ Tide and surf condition data is fetched from the Surfline API, providing accurat
 
 ## Installation
 
-1. Clone the repository
-2. Open `mytidesapp.xcodeproj` in Xcode
-3. Build and run the project
-4. Add the widget to your macOS desktop from the widget gallery
+### Option 1: Download Pre-built App (Easiest)
+
+1. Download the latest `MyTides.dmg` from the [Releases page](https://github.com/weilandia/mytidesapp/releases)
+2. Open the DMG file
+3. Drag MyTides to your Applications folder
+4. Launch MyTides from Applications (you can quit it after launching)
+5. Right-click on your desktop and select "Edit Widgets"
+6. Search for "MyTides" and add the widget in your preferred size
+
+### Option 2: Build from Source
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/weilandia/mytidesapp.git
+   cd mytidesapp
+   ```
+
+2. Build the DMG installer:
+   ```bash
+   ./build-dmg.sh
+   ```
+
+3. Install from the generated `MyTides.dmg`:
+   - Open the DMG file
+   - Drag MyTides to Applications
+   - Launch MyTides once from Applications
+   - Add the widget from desktop → Edit Widgets
+
+### Option 3: Development Build
+
+1. Open `mytidesapp.xcodeproj` in Xcode
+2. Select Product → Archive
+3. Click "Distribute App" → "Copy App"
+4. Save to your Applications folder
+5. Launch the app once, then add the widget
+
+## Widget Not Showing?
+
+If the widget doesn't appear after installation:
+1. Make sure you've launched MyTides at least once from Applications
+2. Try logging out and back in to macOS
+3. Check System Settings → Privacy & Security → Extensions → MyTides is enabled
 
 ## Requirements
 
