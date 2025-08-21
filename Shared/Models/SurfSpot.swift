@@ -1,6 +1,6 @@
 import Foundation
 
-enum SurfSpot: String, CaseIterable {
+enum SurfSpot: String, CaseIterable, Codable {
     case pleasurePoint = "Pleasure Point"
     case twentySixthAve = "26th Avenue"
     case steamerLane = "Steamer Lane"
@@ -122,7 +122,7 @@ enum SurfSpot: String, CaseIterable {
     }
 }
 
-enum SurfQuality {
+enum SurfQuality: String, Codable {
     case excellent
     case good  
     case fair
@@ -156,7 +156,7 @@ enum SurfQuality {
     }
 }
 
-struct SurfCondition {
+struct SurfCondition: Codable {
     let quality: SurfQuality
     let tideHeight: Double
     let time: Date

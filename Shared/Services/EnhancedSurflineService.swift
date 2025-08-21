@@ -232,7 +232,7 @@ class EnhancedSurflineService: ObservableObject {
 
 // MARK: - Data Models
 
-struct SpotConditions {
+struct SpotConditions: Codable {
     let spot: SurflineSpot
     let waveHeight: String
     let waveDescription: String
@@ -277,7 +277,7 @@ struct SpotConditions {
     }
 }
 
-struct SurflineRating {
+struct SurflineRating: Codable {
     let value: Double  // 0-5 scale
     let text: String
     
@@ -335,7 +335,7 @@ struct SurflineTide: Codable {
     let height: Double?
 }
 
-struct SurflineTideData {
+struct SurflineTideData: Codable {
     let current: SurflineTide?
     let upcoming: [SurflineTide]
     let all: [SurflineTide]

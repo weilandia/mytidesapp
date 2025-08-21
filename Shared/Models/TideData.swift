@@ -1,6 +1,6 @@
 import Foundation
 
-struct TideData {
+struct TideData: Codable {
     let currentTide: TidePrediction
     let nextTides: [TidePrediction]
     let hourlyPredictions: [TidePrediction]  // For tide chart
@@ -47,7 +47,7 @@ struct TideData {
     }
 }
 
-struct TidePrediction: Identifiable {
+struct TidePrediction: Identifiable, Codable {
     let id = UUID()
     
     let time: Date
@@ -85,7 +85,7 @@ struct TidePrediction: Identifiable {
         }
     }
     
-    enum TideType {
+    enum TideType: String, Codable {
         case high
         case low
         case rising

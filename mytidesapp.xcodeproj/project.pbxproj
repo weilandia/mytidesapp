@@ -15,6 +15,7 @@
 		A97E1CB72E578B0B004C537E /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E1CA52E578B0B004C537E /* AppConfig.swift */; };
 		A97E1CB82E578B0B004C537E /* TideChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E1CAF2E578B0B004C537E /* TideChartView.swift */; };
 		A97E1CB92E578B0B004C537E /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E1CAA2E578B0B004C537E /* ConfigService.swift */; };
+		A97E1CBA2E578B0C004C537E /* SharedDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E1CAE2E578B0C004C537E /* SharedDataStorage.swift */; };
 		A97E1CBA2E578B0B004C537E /* TideData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E1CA82E578B0B004C537E /* TideData.swift */; };
 		A97E1CBB2E578B0B004C537E /* TideDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E1CAD2E578B0B004C537E /* TideDataService.swift */; };
 		A97E1CBC2E578B0B004C537E /* SurfSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E1CA72E578B0B004C537E /* SurfSpot.swift */; };
@@ -23,6 +24,7 @@
 		A97E1CBF2E578B0B004C537E /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E1CA52E578B0B004C537E /* AppConfig.swift */; };
 		A97E1CC02E578B0B004C537E /* TideChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E1CAF2E578B0B004C537E /* TideChartView.swift */; };
 		A97E1CC12E578B0B004C537E /* ConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E1CAA2E578B0B004C537E /* ConfigService.swift */; };
+		A97E1CC22E578B0C004C537E /* SharedDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E1CAE2E578B0C004C537E /* SharedDataStorage.swift */; };
 		A9B625B62E5786E50065436B /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B625B52E5786E50065436B /* WidgetKit.framework */; };
 		A9B625B82E5786E50065436B /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B625B72E5786E50065436B /* SwiftUI.framework */; };
 		A9B625C42E5786E60065436B /* mytideswidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A9B625B32E5786E50065436B /* mytideswidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -74,6 +76,7 @@
 		A97E1CAB2E578B0B004C537E /* EnhancedSurflineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancedSurflineService.swift; sourceTree = "<group>"; };
 		A97E1CAC2E578B0B004C537E /* SurflineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurflineService.swift; sourceTree = "<group>"; };
 		A97E1CAD2E578B0B004C537E /* TideDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideDataService.swift; sourceTree = "<group>"; };
+		A97E1CAE2E578B0C004C537E /* SharedDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataStorage.swift; sourceTree = "<group>"; };
 		A97E1CAF2E578B0B004C537E /* TideChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TideChartView.swift; sourceTree = "<group>"; };
 		A9B625842E57869C0065436B /* mytidesapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mytidesapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B625922E57869D0065436B /* mytidesappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mytidesappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,6 +180,7 @@
 				A97E1CAB2E578B0B004C537E /* EnhancedSurflineService.swift */,
 				A97E1CAC2E578B0B004C537E /* SurflineService.swift */,
 				A97E1CAD2E578B0B004C537E /* TideDataService.swift */,
+				A97E1CAE2E578B0C004C537E /* SharedDataStorage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -420,6 +424,7 @@
 				A97E1CBF2E578B0B004C537E /* AppConfig.swift in Sources */,
 				A97E1CC02E578B0B004C537E /* TideChartView.swift in Sources */,
 				A97E1CC12E578B0B004C537E /* ConfigService.swift in Sources */,
+				A97E1CC22E578B0C004C537E /* SharedDataStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +454,7 @@
 				A97E1CB72E578B0B004C537E /* AppConfig.swift in Sources */,
 				A97E1CB82E578B0B004C537E /* TideChartView.swift in Sources */,
 				A97E1CB92E578B0B004C537E /* ConfigService.swift in Sources */,
+				A97E1CBA2E578B0C004C537E /* SharedDataStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

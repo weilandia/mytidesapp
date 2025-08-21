@@ -79,7 +79,7 @@ struct AppConfig {
 
 // MARK: - Supporting Types
 
-struct SurflineSpot {
+struct SurflineSpot: Codable {
     let id: String
     let name: String
     let displayName: String
@@ -87,7 +87,7 @@ struct SurflineSpot {
     let optimalDirection: TideDirection
     let description: String
     
-    enum TideDirection {
+    enum TideDirection: String, Codable {
         case rising
         case falling
         case any

@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import WidgetKit
+import Foundation
 
 struct ContentView: View {
     @StateObject private var surflineService = EnhancedSurflineService()
     @State private var tideData: TideData?
     @State private var isLoading = true
+    let timer = Timer.publish(every: 300, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack(spacing: 20) {
@@ -66,12 +69,23 @@ struct ContentView: View {
         .task {
             await refreshData()
         }
+        .onReceive(timer) { _ in
+            Task {
+                await refreshData()
+            }
+        }
     }
     
     func refreshData() async {
         isLoading = true
         await surflineService.fetchAllSpotsData()
         tideData = await convertSurflineTideData()
+        
+        // Save to shared storage for widget
+        if let tideData = tideData {
+            SharedDataStorage.shared.saveTideData(tideData, spotConditions: surflineService.spotConditions)
+        }
+        
         isLoading = false
     }
     

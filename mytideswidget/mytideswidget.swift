@@ -3,38 +3,78 @@ import SwiftUI
 
 struct Provider: TimelineProvider {
     let surflineService = EnhancedSurflineService()
+    let sharedStorage = SharedDataStorage.shared
     
     func placeholder(in context: Context) -> TideEntry {
         TideEntry(date: Date(), tideData: TideData.placeholder, spotConditions: nil)
     }
     
     func getSnapshot(in context: Context, completion: @escaping (TideEntry) -> ()) {
-        Task {
-            await surflineService.fetchAllSpotsData()
-            let data = await convertSurflineTideData(surflineService: surflineService)
-            let entry = TideEntry(date: Date(), tideData: data, spotConditions: surflineService.spotConditions)
+        // Try to load cached data first
+        let (cachedTideData, cachedSpotConditions, _) = sharedStorage.loadTideData()
+        
+        if let tideData = cachedTideData {
+            // Use cached data for quick snapshot
+            let entry = TideEntry(date: Date(), tideData: tideData, spotConditions: cachedSpotConditions)
             completion(entry)
+        } else {
+            // Fallback to fetching if no cached data
+            Task {
+                await surflineService.fetchAllSpotsData()
+                let data = await convertSurflineTideData(surflineService: surflineService)
+                let entry = TideEntry(date: Date(), tideData: data, spotConditions: surflineService.spotConditions)
+                completion(entry)
+            }
         }
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        Task {
-            await surflineService.fetchAllSpotsData()
-            let data = await convertSurflineTideData(surflineService: surflineService)
+        // Load cached data from shared storage
+        let (cachedTideData, cachedSpotConditions, lastUpdated) = sharedStorage.loadTideData()
+        
+        // Use cached data if fresh, otherwise fetch new data
+        if let tideData = cachedTideData, sharedStorage.isCachedDataFresh() {
+            print("Widget: Using cached data from \(lastUpdated ?? Date())")
             
             var entries: [TideEntry] = []
             let currentDate = Date()
             
-            // Create timeline entries for the next 6 hours, updating every 30 minutes
-            for minuteOffset in stride(from: 0, to: 360, by: 30) {
+            // Create timeline entries for the next 30 minutes, updating every 5 minutes
+            for minuteOffset in stride(from: 0, to: 30, by: 5) {
                 let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
-                let entry = TideEntry(date: entryDate, tideData: data, spotConditions: surflineService.spotConditions)
+                let entry = TideEntry(date: entryDate, tideData: tideData, spotConditions: cachedSpotConditions)
                 entries.append(entry)
             }
             
-            // Refresh timeline after 6 hours
-            let timeline = Timeline(entries: entries, policy: .after(Calendar.current.date(byAdding: .hour, value: 6, to: currentDate)!))
+            // Refresh timeline after 5 minutes to check for new data
+            let timeline = Timeline(entries: entries, policy: .after(Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!))
             completion(timeline)
+        } else {
+            // Fetch new data if cache is stale or missing
+            print("Widget: Cache is stale or missing, fetching new data")
+            Task {
+                await surflineService.fetchAllSpotsData()
+                let data = await convertSurflineTideData(surflineService: surflineService)
+                
+                // Save fetched data to shared storage
+                if let data = data {
+                    sharedStorage.saveTideData(data, spotConditions: surflineService.spotConditions)
+                }
+                
+                var entries: [TideEntry] = []
+                let currentDate = Date()
+                
+                // Create timeline entries for the next 6 hours, updating every 30 minutes
+                for minuteOffset in stride(from: 0, to: 360, by: 30) {
+                    let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
+                    let entry = TideEntry(date: entryDate, tideData: data, spotConditions: surflineService.spotConditions)
+                    entries.append(entry)
+                }
+                
+                // Refresh timeline after 5 minutes
+                let timeline = Timeline(entries: entries, policy: .after(Calendar.current.date(byAdding: .minute, value: 5, to: currentDate)!))
+                completion(timeline)
+            }
         }
     }
     

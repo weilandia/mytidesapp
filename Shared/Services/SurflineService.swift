@@ -100,7 +100,7 @@ class SurflineService: ObservableObject {
 
 // MARK: - Wave Data Models
 
-struct WaveData {
+struct WaveData: Codable {
     let spotName: String
     let waveHeightMin: Double  // in feet
     let waveHeightMax: Double  // in feet
