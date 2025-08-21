@@ -11,7 +11,6 @@ A macOS widget app for tracking tide conditions and surf spots in Santa Cruz.
 - **Tide Pool Conditions**: Smart recommendations for the best times to explore tide pools
 - **Surf Spot Ratings**: Live conditions from multiple Santa Cruz surf spots including Pleasure Point and 26th Avenue
 - **Multiple Widget Sizes**: Small, Medium, and Large widget options
-- **Liquid Glass Design**: Beautiful translucent design following Apple's latest design paradigms
 
 ## Widget Preview
 
@@ -21,10 +20,6 @@ A macOS widget app for tracking tide conditions and surf spots in Santa Cruz.
 
 - Pleasure Point
 - 26th Avenue
-- The Hook
-- Steamer Lane
-- Cowell's
-- Capitola
 
 ## Data Sources
 
